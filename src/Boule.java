@@ -65,8 +65,7 @@ public class Boule extends JComponent implements MouseListener,MouseMotionListen
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+				
 	}
 
 }
