@@ -10,12 +10,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
-public class Boule extends JComponent implements MouseListener,MouseMotionListener{
+public class Panier extends JComponent implements MouseListener,MouseMotionListener{
 	private BufferedImage image;
 	public boolean selected;
-	public Boule() throws IOException {
-		image=ImageIO.read(new File("images/boule.png"));
-		setPreferredSize(new Dimension(50, 50));
+	public Panier() throws IOException {
+		image=ImageIO.read(new File("images/panier.png"));
+		setPreferredSize(new Dimension(100, 100));
 		addMouseListener(this);
 		addMouseMotionListener(this);
 	}
