@@ -29,7 +29,7 @@ public class Fenetre extends JFrame implements MouseListener, MouseMotionListene
 	addMouseMotionListener(this);
 	addKeyListener(this);
 	setVisible(true);
-	boule.tomber();
+	boule.tomber(panier);
 }
 @Override
 public void mouseDragged(MouseEvent e) {
