@@ -29,6 +29,7 @@ public class Fenetre extends JFrame implements MouseListener, MouseMotionListene
 	addMouseMotionListener(this);
 	addKeyListener(this);
 	setVisible(true);
+	boule.tomber();
 }
 @Override
 public void mouseDragged(MouseEvent e) {
@@ -73,7 +74,6 @@ public void keyTyped(KeyEvent e) {
 @Override
 public void keyPressed(KeyEvent e) {
 	int code=e.getKeyCode();
-	System.out.println(code);
 	switch (code){
 	case KeyEvent.VK_RIGHT:panier.setLocation(panier.getX()+5, panier.getY());break;
 	case KeyEvent.VK_LEFT:panier.setLocation(panier.getX()-5, panier.getY());break;

@@ -15,9 +15,9 @@ public class Boule extends JComponent implements MouseListener,MouseMotionListen
 	public boolean selected;
 	public Boule() throws IOException {
 		image=ImageIO.read(new File("images/boule.png"));
-		setPreferredSize(new Dimension(50, 50));
 		addMouseListener(this);
 		addMouseMotionListener(this);
+		
 	}
 	@Override
 	protected void paintComponent(Graphics g) {	
@@ -25,7 +25,6 @@ public class Boule extends JComponent implements MouseListener,MouseMotionListen
 		if (image!=null) {
 			g.drawImage(image,0,0,getWidth(), getHeight(),this);
 		}
-
 	}
 
 
@@ -73,4 +72,15 @@ public class Boule extends JComponent implements MouseListener,MouseMotionListen
 		}
 	}
 
+	public void tomber() {
+		while(this.getY()<292) {
+			this.setLocation(this.getX(), this.getY()+1);
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		this.setVisible(false);
+	}
 }

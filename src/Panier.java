@@ -15,7 +15,6 @@ public class Panier extends JComponent implements MouseListener,MouseMotionListe
 	public boolean selected;
 	public Panier() throws IOException {
 		image=ImageIO.read(new File("images/panier.png"));
-		setPreferredSize(new Dimension(100, 100));
 		addMouseListener(this);
 		addMouseMotionListener(this);
 	}
