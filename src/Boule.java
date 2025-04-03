@@ -73,19 +73,20 @@ public class Boule extends JComponent implements MouseListener,MouseMotionListen
 	}
 
 	public void tomber(Panier panier) {
-		int yLimit=292;
-		while(this.getY()<400) {
-			this.setLocation(this.getX(), this.getY()+1);
-			if ((this.getX()<panier.getX()+100)&&(this.getX()>panier.getX())&&(this.getY()>yLimit)) {
-				this.setVisible(false);
+		new Thread(()->{
+			int yLimit=292;
+			while(this.getY()<400) {
+				this.setLocation(this.getX(), this.getY()+1);
+				if ((this.getX()<panier.getX()+100)&&(this.getX()>panier.getX())&&(this.getY()>yLimit)) {
+					this.setVisible(false);
+				}
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		
+		}).start();
 		
 	}
 }

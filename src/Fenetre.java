@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -17,19 +19,32 @@ public class Fenetre extends JFrame implements MouseListener, MouseMotionListene
 	setLocationRelativeTo(null);
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setLayout(null);
-	//Ajouter une boule
-	boule=new Boule();
-	boule.setBounds(375, 100, 50, 50);
-	add(boule);
 	//Ajouter le panier
 	panier=new Panier();
 	panier.setBounds(350,280,100,100);
 	add(panier);
+	//Déclarer un une liste de boules
+	List<Boule> boules=new ArrayList<Boule>();
+	//Ajouter une boule
+	Thread T=new Thread(()->{
+		for (int i=0;i<10;i++) {
+			try {
+			boules.add(new Boule());
+			boules.getLast().setBounds((int)(Math.random()*750), 100, 50, 50);
+			add(boules.getLast());
+			boules.getLast().tomber(panier);
+				Thread.sleep(1000);
+			} catch (InterruptedException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}
+	});
 	
 	addMouseMotionListener(this);
 	addKeyListener(this);
 	setVisible(true);
-	boule.tomber(panier);
+	T.start();
 }
 @Override
 public void mouseDragged(MouseEvent e) {
@@ -37,9 +52,7 @@ public void mouseDragged(MouseEvent e) {
 }
 @Override
 public void mouseMoved(MouseEvent e) {
-	if (boule.selected) {
-	boule.setLocation(e.getX()-25, e.getY()-25);
-	}
+
 }
 @Override
 public void mouseClicked(MouseEvent e) {
