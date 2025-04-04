@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -8,7 +9,10 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class Boule extends JComponent implements MouseListener,MouseMotionListener{
 	private BufferedImage image;
@@ -17,7 +21,8 @@ public class Boule extends JComponent implements MouseListener,MouseMotionListen
 		image=ImageIO.read(new File("images/boule.png"));
 		addMouseListener(this);
 		addMouseMotionListener(this);
-		
+		setBorder(BorderFactory.createLineBorder(Color.blue, 3, true));
+
 	}
 	@Override
 	protected void paintComponent(Graphics g) {	
@@ -77,8 +82,12 @@ public class Boule extends JComponent implements MouseListener,MouseMotionListen
 			int yLimit=292;
 			while(this.getY()<400) {
 				this.setLocation(this.getX(), this.getY()+1);
-				if ((this.getX()<panier.getX()+100)&&(this.getX()>panier.getX())&&(this.getY()>yLimit)) {
+				if ((this.getX()<panier.getX()+100)&&(this.getX()>panier.getX()-50)&&(this.getY()>yLimit)) {
 					this.setVisible(false);
+					Fenetre fenetre=(Fenetre) SwingUtilities.getWindowAncestor(this);
+					fenetre.addPoint();
+					break;
+					
 				}
 				try {
 					Thread.sleep(10);

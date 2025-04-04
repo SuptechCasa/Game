@@ -10,15 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Fenetre extends JFrame implements MouseListener, MouseMotionListener,KeyListener{
 	Boule boule;
 	Panier panier;
+	JLabel scoreLabel;
 	public Fenetre() throws IOException {
 	setSize(800, 600);
 	setLocationRelativeTo(null);
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setLayout(null);
+	//Ajouter JLabel pour le score
+	scoreLabel=new JLabel("0");
+	scoreLabel.setBounds(770, 0, 30, 20);
+	this.add(scoreLabel);
+	
 	//Ajouter le panier
 	panier=new Panier();
 	panier.setBounds(350,280,100,100);
@@ -27,7 +34,7 @@ public class Fenetre extends JFrame implements MouseListener, MouseMotionListene
 	List<Boule> boules=new ArrayList<Boule>();
 	//Ajouter une boule
 	Thread T=new Thread(()->{
-		for (int i=0;i<10;i++) {
+		for (int i=0;i<30;i++) {
 			try {
 			boules.add(new Boule());
 			boules.getLast().setBounds((int)(Math.random()*750), 100, 50, 50);
@@ -96,5 +103,10 @@ public void keyPressed(KeyEvent e) {
 public void keyReleased(KeyEvent e) {
 	// TODO Auto-generated method stub
 	
+}
+
+public void addPoint() {
+	this.scoreLabel.setText((Integer.parseInt(this.scoreLabel.getText())+1)+"");
+	System.out.println(this.scoreLabel.getText());
 }
 }

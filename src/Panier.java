@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 
 public class Panier extends JComponent implements MouseListener,MouseMotionListener{
@@ -17,6 +19,7 @@ public class Panier extends JComponent implements MouseListener,MouseMotionListe
 		image=ImageIO.read(new File("images/panier.png"));
 		addMouseListener(this);
 		addMouseMotionListener(this);
+		setBorder(BorderFactory.createLineBorder(Color.blue, 3, true));
 	}
 	@Override
 	protected void paintComponent(Graphics g) {	
