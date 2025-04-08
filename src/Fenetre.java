@@ -107,6 +107,5 @@ public void keyReleased(KeyEvent e) {
 
 public void addPoint() {
 	this.scoreLabel.setText((Integer.parseInt(this.scoreLabel.getText())+1)+"");
-	System.out.println(this.scoreLabel.getText());
 }
 }
